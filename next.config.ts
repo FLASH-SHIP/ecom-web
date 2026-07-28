@@ -9,13 +9,13 @@ const nextConfig: NextConfig = {
   serverExternalPackages: ["@aws-sdk/client-s3", "sharp"],
 
   transpilePackages: [
-    "@ecom/lib",
-    "@ecom/config",
-    "@ecom/types",
+    "@flash-ship/ecom-lib",
+    "@flash-ship/ecom-config",
+    "@flash-ship/ecom-types",
     "@ecom/prisma",
     "@ecom/trpc",
     "@ecom/features",
-    "@ecom/ui",
+    "@flash-ship/ecom-ui",
   ],
 
   async rewrites() {

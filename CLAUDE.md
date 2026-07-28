@@ -4,9 +4,9 @@ You are working on the Public Landing Page Website built with Next.js 16 (App Ro
 
 ## Core Directives
 
-- **Shared UI & Domain**: Consume UI components from `@ecom/ui` and `@ecom/ui/domain`.
+- **Shared UI & Domain**: Consume UI components from `@flash-ship/ecom-ui` and `@flash-ship/ecom-ui/domain`.
 - **SEO & Performance**: Maintain 100% Core Web Vitals optimization, static page generation, and structured metadata.
-- **Translations (i18n)**: Load translations from `@ecom/i18n`.
+- **Translations (i18n)**: Load translations from `@flash-ship/ecom-i18n`.
 - **Tailwind v4 Scanning**: Ensure `globals.css` includes `@source "../../../ecom-shared-packages/packages/ui"`.
 
 ---
