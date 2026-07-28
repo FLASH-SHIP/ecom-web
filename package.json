@@ -13,7 +13,7 @@
     "yalc:link:all": "npx yalc add @flash-ship/ecom-ui && npx yalc add @flash-ship/ecom-trpc && npx yalc add @flash-ship/ecom-i18n && npx yalc add @flash-ship/ecom-lib"
   },
   "dependencies": {
-    "@flash-ship/ecom-trpc": "portal:../ecom-shared-packages/packages/trpc",
+    "@flash-ship/ecom-trpc-types": "portal:../ecom-api/packages/trpc",
     "@flash-ship/ecom-ui": "portal:../ecom-shared-packages/packages/ui",
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-checkbox": "^1.3.4",

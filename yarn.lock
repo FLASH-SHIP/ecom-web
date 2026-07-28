@@ -23,7 +23,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@ecom/web@workspace:."
   dependencies:
-    "@flash-ship/ecom-trpc": "portal:../ecom-shared-packages/packages/trpc"
+    "@flash-ship/ecom-trpc-types": "portal:../ecom-api/packages/trpc"
     "@flash-ship/ecom-ui": "portal:../ecom-shared-packages/packages/ui"
     "@radix-ui/react-avatar": "npm:^1.1.0"
     "@radix-ui/react-checkbox": "npm:^1.3.4"
@@ -121,9 +121,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@flash-ship/ecom-trpc@portal:../ecom-shared-packages/packages/trpc::locator=%40ecom%2Fweb%40workspace%3A.":
+"@flash-ship/ecom-trpc-types@portal:../ecom-api/packages/trpc::locator=%40ecom%2Fweb%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "@flash-ship/ecom-trpc@portal:../ecom-shared-packages/packages/trpc::locator=%40ecom%2Fweb%40workspace%3A."
+  resolution: "@flash-ship/ecom-trpc-types@portal:../ecom-api/packages/trpc::locator=%40ecom%2Fweb%40workspace%3A."
   dependencies:
     "@trpc/server": "npm:^11.1.0"
     exceljs: "npm:^4.4.0"
