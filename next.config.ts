@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   turbopack: {
-    root: path.join(__dirname, "../.."),
+    root: path.join(__dirname, ".."),
   },
 
   serverExternalPackages: ["@aws-sdk/client-s3", "sharp"],
@@ -17,6 +17,17 @@ const nextConfig: NextConfig = {
     "@ecom/features",
     "@ecom/ui",
   ],
+
+  async rewrites() {
+    const apiUrl =
+      process.env.INTERNAL_API_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+    return [
+      {
+        source: "/api/v1/:path*",
+        destination: `${apiUrl}/api/v1/:path*`,
+      },
+    ];
+  },
 
   async headers() {
     return [

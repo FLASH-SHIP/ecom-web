@@ -36,7 +36,10 @@ export default async function RootLayout({
 
   const cookieStore = await cookies();
   const isLoggedIn =
-    cookieStore.has("authjs.session-token") || cookieStore.has("__Secure-authjs.session-token");
+    cookieStore.has("ecom-customer.session-token") ||
+    cookieStore.has("__Secure-ecom-customer.session-token") ||
+    cookieStore.has("authjs.session-token") ||
+    cookieStore.has("__Secure-authjs.session-token");
 
   return (
     <html lang={lang} className={inter.variable}>

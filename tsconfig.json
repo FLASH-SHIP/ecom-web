@@ -1,17 +1,35 @@
 {
-  "extends": "@ecom/tsconfig/nextjs.json",
   "compilerOptions": {
-    "declaration": false,
-    "declarationMap": false,
+    "target": "es2022",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
       "@web/*": ["./src/*"],
-      "@ecom/lib/*": ["../../packages/lib/src/*"],
-      "@ecom/config": ["../../packages/config/src/index.ts"],
-      "@ecom/types": ["../../packages/types/src/index.ts"],
-      "@ecom/trpc/*": ["../../packages/trpc/*"],
-      "@ecom/features/*": ["../../packages/features/*"],
-      "@ecom/ui/*": ["../../packages/ui/*"],
-      "@ecom/shared/*": ["../../packages/shared/src/*"]
+      "@ecom/ui": ["../ecom-shared-packages/packages/ui/src/index.ts"],
+      "@ecom/ui/domain": ["../ecom-shared-packages/packages/ui/src/domain/index.ts"],
+      "@ecom/ui/components/*": ["../ecom-shared-packages/packages/ui/src/components/*"],
+      "@ecom/ui/lib/utils": ["../ecom-shared-packages/packages/ui/src/lib/utils.ts"],
+      "@ecom/ui/*": ["../ecom-shared-packages/packages/ui/src/*"],
+      "@ecom/trpc-contract": ["../ecom-shared-packages/packages/trpc/server/index.ts"],
+      "@ecom/trpc-contract/*": ["../ecom-shared-packages/packages/trpc/*"],
+      "@ecom/i18n/locales/*": ["../ecom-shared-packages/packages/i18n/locales/*"],
+      "@ecom/i18n": ["../ecom-shared-packages/packages/i18n/src/index.ts"],
+      "@ecom/i18n/*": ["../ecom-shared-packages/packages/i18n/src/*"]
     }
   },
   "include": [
@@ -20,8 +38,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts",
-    "../../packages/shared/src/@auth/next-auth.d.ts"
+    "**/*.mts"
   ],
   "exclude": ["node_modules"]
 }

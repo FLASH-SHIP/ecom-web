@@ -4,25 +4,18 @@ import { NextResponse } from "next/server";
 /**
  * Supported locales for the customer-facing site.
  * In production, these would be fetched from the DB at build time,
- * but for middleware (Edge Runtime), we use a static list.
+ * but for middleware/proxy (Edge Runtime), we use a static list.
  */
 const SUPPORTED_LOCALES = ["vi", "en"];
 const DEFAULT_LOCALE = "vi";
 const LOCALE_COOKIE = "NEXT_LOCALE";
 
 /**
- * i18n middleware for locale-prefixed URLs.
- *
- * Locale resolution priority:
- *   1. URL path prefix (/vi/..., /en/...)
- *   2. NEXT_LOCALE cookie (set by LanguageSwitcher for returning visitors)
- *   3. Accept-Language header (browser preference for first-time visitors)
- *   4. DEFAULT_LOCALE fallback
- *
- * Skip paths: /api, /_next, static assets.
+ * i18n proxy for locale-prefixed URLs.
+ * Next.js 16 file convention: src/proxy.ts
  */
-// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: locale resolution requires multiple priority checks (path → cookie → Accept-Language → default)
-export function middleware(request: NextRequest) {
+// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: locale resolution requires multiple priority checks
+export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Skip internal paths

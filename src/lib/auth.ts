@@ -17,7 +17,12 @@ export function getCookie(name: string): string | null {
 }
 
 export function isLoggedIn(): boolean {
-  return !!getCookie(AUTH_KEYS.sessionToken) || !!getCookie(AUTH_KEYS.secureSessionToken);
+  return (
+    !!getCookie("ecom-customer.session-token") ||
+    !!getCookie("__Secure-ecom-customer.session-token") ||
+    !!getCookie(AUTH_KEYS.sessionToken) ||
+    !!getCookie(AUTH_KEYS.secureSessionToken)
+  );
 }
 
 // These are no-op placeholders on the web marketing app since actual token modification

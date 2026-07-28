@@ -1,4 +1,3 @@
-import { overlayPostTranslations } from "@ecom/features/translation/services/TranslationOverlay";
 import { env } from "@web/env";
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "../../lib/i18n";
 
@@ -6,16 +5,6 @@ const BASE_URL = env.NEXT_PUBLIC_APP_URL;
 const API_URL = env.NEXT_PUBLIC_API_URL;
 const SITE_NAME = "Ecom";
 
-/**
- * Locale-aware RSS 2.0 feed for blog posts.
- *
- * Routes:
- *   /feed.xml          → default locale feed (vi)
- *   /feed.xml?lang=en  → English translated feed
- *   /feed.xml?lang=vi  → Vietnamese feed
- *
- * Adds <atom:link> alternates pointing to feeds in other languages.
- */
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const langParam = url.searchParams.get("lang");
@@ -29,7 +18,10 @@ export async function GET(request: Request) {
   try {
     const res = await fetch(
       `${API_URL}/api/trpc/public.blog.list?input=${encodeURIComponent(JSON.stringify({ json: { perPage: 50 } }))}`,
-      { next: { revalidate: 1800 } },
+      {
+        headers: { "x-locale": locale },
+        next: { revalidate: 1800 },
+      },
     );
 
     if (res.ok) {
@@ -42,11 +34,7 @@ export async function GET(request: Request) {
         createdAt: string;
       }[] = data?.result?.data?.json?.items ?? [];
 
-      // Overlay translations when requesting non-default locale
-      const overlaid =
-        locale !== DEFAULT_LOCALE ? await overlayPostTranslations(posts, locale) : posts;
-
-      items = overlaid
+      items = posts
         .map(
           (post) => `
     <item>
@@ -63,7 +51,6 @@ export async function GET(request: Request) {
     // RSS feed should not fail the request
   }
 
-  // Build <atom:link> alternates for other languages
   const selfLink = `${BASE_URL}/feed.xml${locale !== DEFAULT_LOCALE ? `?lang=${locale}` : ""}`;
   const alternateLinks = SUPPORTED_LOCALES.filter((l) => l !== locale)
     .map(

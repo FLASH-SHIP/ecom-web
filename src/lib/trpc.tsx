@@ -1,6 +1,6 @@
 "use client";
 
-import type { AppRouter } from "@ecom/trpc/server/routers/_app";
+import type { AppRouter } from "@ecom/trpc-contract";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink } from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
@@ -33,7 +33,8 @@ export function TRPCProvider({ children }: { children: React.ReactNode }) {
       links: [
         httpBatchLink({
           url: `${getBaseUrl()}/api/trpc`,
-          transformer: superjson,
+          // biome-ignore lint/suspicious/noExplicitAny: tRPC v11 uses TypeError<> sentinel type for transformer — superjson satisfies DataTransformer at runtime
+          transformer: superjson as any,
           headers() {
             const headers: Record<string, string> = {};
             if (typeof window !== "undefined") {
