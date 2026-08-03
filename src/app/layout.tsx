@@ -1,6 +1,6 @@
 import { TRPCProvider } from "@web/lib/trpc";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Be_Vietnam_Pro } from "next/font/google";
 import { cookies } from "next/headers";
 import { HrefLangTags } from "../components/HrefLangTags";
 import { WebLayout } from "../components/WebLayout";
@@ -9,10 +9,11 @@ import "./globals.css";
 
 import { env } from "@web/env";
 
-const inter = Inter({
+const beVietnamPro = Be_Vietnam_Pro({
   subsets: ["latin", "vietnamese"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
@@ -42,7 +43,7 @@ export default async function RootLayout({
     cookieStore.has("__Secure-authjs.session-token");
 
   return (
-    <html lang={lang} className={inter.variable}>
+    <html lang={lang} className={beVietnamPro.variable}>
       <head>
         <HrefLangTags />
       </head>
